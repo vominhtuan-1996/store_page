@@ -6,4 +6,11 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   base: '/store_page/',
   plugins: [react(), tailwindcss()],
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    watch: {
+      usePolling: true,
+    },
+  },
 })
