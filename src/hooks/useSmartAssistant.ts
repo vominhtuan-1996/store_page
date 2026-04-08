@@ -25,29 +25,37 @@ export const useSmartAssistant = (apis: ApiDefinition[]) => {
 
     // --- Intelligence Layer: Parse specific parameters ---
     
-    // Detect Year
-    const yearMatch = lowerQuery.match(/năm\s+(\d{4})/);
-    const year = yearMatch ? yearMatch[1] : null;
+    // Detect Year (Default to 2026 if not specified)
+    const yearMatch = lowerQuery.match(/(?:năm\s+)?(\d{4})/);
+    const year = yearMatch ? yearMatch[1] : '2026';
 
-    // Detect Quarter
-    const quarterMatch = lowerQuery.match(/quí\s+([1-4])/);
+    // Detect Quarter (Support both "quý" and "quí")
+    const quarterMatch = lowerQuery.match(/(?:quý|quí)\s+([1-4])/);
     const quarter = quarterMatch ? quarterMatch[1] : null;
 
     // Ticket List (Ds Phiếu) Detection
     const isTicketListQuery = lowerQuery.includes('phiếu') || lowerQuery.includes('ticket');
 
-    if (year && quarter) {
+    if (quarter) {
       if (isTicketListQuery) {
         // Mapping Quarter to Date Range for Ds Phiếu API (YYYY/MM format)
+        // User specific requirement: From is start, To is end (+3 months)
         const startMonth = (parseInt(quarter) - 1) * 3 + 1;
-        const endMonth = startMonth + 2;
+        let endMonth = startMonth + 3;
+        let endYear = parseInt(year);
+        
+        if (endMonth > 12) {
+          endMonth -= 12;
+          endYear += 1;
+        }
+
         inferredParams['UsedDateFrom'] = `${year}/${startMonth.toString().padStart(2, '0')}`;
-        inferredParams['UsedDateTo'] = `${year}/${endMonth.toString().padStart(2, '0')}`;
+        inferredParams['UsedDateTo'] = `${endYear}/${endMonth.toString().padStart(2, '0')}`;
       } else {
         inferredParams['usedMonth'] = `${year}/Q${quarter}`;
         inferredParams['monthDeploy'] = `${year}/${quarter.padStart(2, '0')}`;
       }
-    } else if (year) {
+    } else if (yearMatch) {
       inferredParams['year'] = year;
     }
 
