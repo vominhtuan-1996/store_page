@@ -1,0 +1,2382 @@
+{
+    "info": {
+        "name": "PMS",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "publicationCategory",
+            "description": "",
+            "item": [
+                {
+                    "name": "lấy danh sách loại ấn phẩm",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/posmType",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "posmType"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "lấy trạng thái ấn phẩm ",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/v1/pmsMarketing/cbb/posmCategoryStatus",
+                            "path": [
+                                "pms",
+                                "api",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "posmCategoryStatus"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "lấy danh sách ấn phẩm",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/publicationCategory",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publicationCategory"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "posmType",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "expire",
+                                    "value": "12",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "start",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "end",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Premission",
+            "description": "",
+            "item": [
+                {
+                    "name": "getPremission",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/users/menu",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "users",
+                                "menu"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Login",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login token",
+                    "description": "",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "// Parse JSON từ response",
+                                    "var json = JSON.parse(responseBody);",
+                                    "console.log(\"json\", json);",
+                                    "",
+                                    "// Giả sử API trả về token ở json.data.accessToken",
+                                    "var token = json.data?.token;",
+                                    "console.log(\"token\", json.data.token);",
+                                    "if (token) {",
+                                    "  // Lưu token vào Global Variable",
+                                    "   pm.globals.set(\"token\", token);   // 🔑 Lưu vào Global Variable",
+                                    "  console.log(\"Token saved to globals:\", pm.globals.get(\"token\"));",
+                                    "  // console.log(\"variables token\", pm.variables.get(\"token\"));",
+                                    "} else {",
+                                    "  console.log(\"⚠️ Không tìm thấy token trong response:\", json);",
+                                    "}",
+                                    "",
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"userName\": \"HuyNq125@fpt.com\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/users/login",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "users",
+                                "login"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Login test",
+                    "description": "",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    "",
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "// Parse JSON từ response",
+                                    "var json = JSON.parse(responseBody);",
+                                    "console.log(\"json\", json);",
+                                    "",
+                                    "// Giả sử API trả về token ở json.data.accessToken",
+                                    "var token = json.data?.token;",
+                                    "console.log(\"token\", json.data.token);",
+                                    "if (token) {",
+                                    "  // Lưu token vào Global Variable",
+                                    "   pm.globals.set(\"token\", token);   // 🔑 Lưu vào Global Variable",
+                                    "  console.log(\"Token saved to globals:\", pm.globals.get(\"token\"));",
+                                    "  // console.log(\"variables token\", pm.variables.get(\"token\"));",
+                                    "} else {",
+                                    "  console.log(\"⚠️ Không tìm thấy token trong response:\", json);",
+                                    "}",
+                                    "",
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"userName\": \"toild2@fpt.com\",\n    \"password\": \"ISCSP_SU12_123\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/users/loginInternal",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "users",
+                                "loginInternal"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "CreateTicket",
+            "description": "",
+            "item": [
+                {
+                    "name": "V3",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "lấy số lượng khả dụng V3",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{token}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {},
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/pms/api/v1/pmsMarketing/publication/inventoryV3",
+                                    "path": [
+                                        "pms",
+                                        "api",
+                                        "v1",
+                                        "pmsMarketing",
+                                        "publication",
+                                        "inventoryV3"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "BranchId",
+                                            "value": "4",
+                                            "description": "",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "SupplyCode",
+                                            "value": "MKT00143",
+                                            "description": "",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "CampaignId",
+                                            "value": "27",
+                                            "description": "",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "monthDeploy",
+                                            "value": "2025/10",
+                                            "description": "",
+                                            "type": "string"
+                                        }
+                                    ],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "check triễn khai",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{token}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"supplyCode\": [\n        \"20001798\"\n    ],\n    \"usedDate\": \"2025/07/29\",\n    \"usedMonth\": [\n        \"2025/Q3\"\n    ],\n    \"locationId\": [\n        34\n    ],\n    \"districtId\": [\n        7\n    ],\n    \"wardId\": [\n        251\n    ],\n    \"streetId\": [],\n    \"numHouse\": \"\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/publication/checkExistV3",
+                                    "path": [
+                                        "pms",
+                                        "api",
+                                        "m",
+                                        "v1",
+                                        "pmsMarketing",
+                                        "publication",
+                                        "checkExistV3"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Danh sách chiến dịch",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{token}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {},
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/campaignV2",
+                                    "path": [
+                                        "pms",
+                                        "api",
+                                        "m",
+                                        "v1",
+                                        "pmsMarketing",
+                                        "cbb",
+                                        "campaignV2"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "branchId",
+                                            "value": "101",
+                                            "description": "2",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "supplyId",
+                                            "description": "339",
+                                            "type": "string"
+                                        }
+                                    ],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "tạo phiếu",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{token}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"id\": 0,\n    \"unitId\": 1,\n    \"person\": 7944,\n    \"usedDate\": \"2025/11/12\",\n    \"branchId\": 131,\n    \"branchName\": \"TGG - Tiền Giang\",\n    \"usedMonths\": [],\n    \"infoPub\": [\n        {\n            \"id\": 0,\n            \"supplyCode\": \"MKT00365\",\n            \"useQuantity\": 1.0,\n            \"imageKey\": [],\n            \"typeId\": 2,\n            \"dateExpire\": \"2027/11/12\",\n            \"monthDeploys\": []\n        }\n    ],\n    \"contactName\": \"\",\n    \"contactPhone\": \"\",\n    \"locationId\": [\n        34\n    ],\n    \"districtId\": [\n        7\n    ],\n    \"wardId\": [\n        251\n    ],\n    \"streetId\": [],\n    \"numHouse\": \"\",\n    \"lat\": \"10.7672599\",\n    \"lng\": \"106.7471152\",\n    \"note\": \"\",\n    \"imageInfo\": []\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/publication/v3",
+                                    "path": [
+                                        "pms",
+                                        "api",
+                                        "m",
+                                        "v1",
+                                        "pmsMarketing",
+                                        "publication",
+                                        "v3"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "edit Phiếu",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{token}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"id\": 8190,\n    \"unitId\": 1,\n    \"person\": 9110,\n    \"usedDate\": \"2025/11/13\",\n    \"usedMonths\": [\n        \"2025/Q4\"\n    ],\n    \"infoPub\": [\n        {\n            \"id\": 8205,\n            \"supplyCode\": \"MKT00143\",\n            \"useQuantity\": 2.0,\n            \"imageKey\": [\n                \"\"\n            ],\n            \"typeId\": 5,\n            \"dateExpire\": \"2026/05/13\",\n            \"monthDeploys\": [\n                \"2025/10\",\n                \"2025/11\"\n            ],\n            \"campaignId\": 33\n        }\n    ],\n    \"contactName\": \"\",\n    \"contactPhone\": \"\",\n    \"locationId\": 34,\n    \"districtId\": 7,\n    \"wardId\": 251,\n    \"numHouse\": \"\",\n    \"lat\": \"10.7672626\",\n    \"lng\": \"106.7471160\",\n    \"note\": \"\",\n    \"imageInfo\": [\n        \"\"\n    ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/pms/api/v1/pmsMarketing/publication/editv3",
+                                    "path": [
+                                        "pms",
+                                        "api",
+                                        "v1",
+                                        "pmsMarketing",
+                                        "publication",
+                                        "editv3"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "comfirm phiếu",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{token}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"id\": 0,\n    \"unitId\": 1,\n    \"person\": 9110,\n    \"usedDate\": \"2025/11/14\",\n    \"branchId\": 2,\n    \"branchName\": \"HNI - Hà Nội 01\",\n    \"usedMonths\": [],\n    \"infoPub\": [\n        {\n            \"id\": 0,\n            \"supplyCode\": \"MKT00143\",\n            \"useQuantity\": 1.0,\n            \"imageKey\": [\n                \"JYjvN88reVkEHimWMGzQ\",\n                \"Wg5PdQrulSdUlfp9MaaU\"\n            ],\n            \"typeId\": 5,\n            \"dateExpire\": \"2026/11/14\",\n            \"monthDeploys\": []\n        }\n    ],\n    \"contactName\": \"\",\n    \"contactPhone\": \"\",\n    \"locationId\": [\n        34\n    ],\n    \"districtId\": [\n        7\n    ],\n    \"wardId\": [\n        251\n    ],\n    \"streetId\": [],\n    \"numHouse\": \"\",\n    \"lat\": \"10.7672659\",\n    \"lng\": \"106.7470916\",\n    \"note\": \"\",\n    \"imageInfo\": []\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/publication/confirmedv3",
+                                    "path": [
+                                        "pms",
+                                        "api",
+                                        "m",
+                                        "v1",
+                                        "pmsMarketing",
+                                        "publication",
+                                        "confirmedv3"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "posmStatus",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/posmStatus",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "posmStatus"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "manageUnit",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/manageUnit",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "manageUnit"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "posmType",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/posmType",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "posmType"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "list users",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/cbb/users",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "users"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [
+                                {
+                                    "key": "start",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "end",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "get địa chỉ ",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/resource/internet-infra/acceptance-report/api/m/v1/plans/getAddressFromLatLng",
+                            "path": [
+                                "resource",
+                                "internet-infra",
+                                "acceptance-report",
+                                "api",
+                                "m",
+                                "v1",
+                                "plans",
+                                "getAddressFromLatLng"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [
+                                {
+                                    "key": "latlng",
+                                    "value": "(10.767465173398383, 106.74784786999226)'",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Tạo phiếu",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 0,\n    \"unitId\": 1,\n    \"person\": 28704,\n    \"usedDate\": \"2025/07/31\",\n    \"usedMonth\": \"2025/Q3\",\n    \"infoPub\": [\n        {\n            \"id\": 0,\n            \"supplyCode\": \"MKT00342\",\n            \"useQuantity\": 1.0,\n            \"imageKey\": [],\n            \"typeId\": 2,\n            \"dateExpire\": \"2026/07/31\",\n            \"monthDeploy\": \"2025/07\"\n        }\n    ],\n    \"contactName\": \"\",\n    \"contactPhone\": \"\",\n    \"locationId\": [\n        34\n    ],\n    \"districtId\": [\n        7\n    ],\n    \"wardId\": [\n        251\n    ],\n    \"streetId\": [],\n    \"numHouse\": \"\",\n    \"lat\": \"10.7673708\",\n    \"lng\": \"106.7470154\",\n    \"note\": \"\",\n    \"imageInfo\": []\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6IjdkYWVmZWQzLWIwZGQtNGYzMC1iNGQ4LWY3OTM0MzRhMWQ2NyIsImV4cCI6MTc0Mzc2ODk4MSwiaXNzIjoieW91ci1pc3N1ZXIiLCJhdWQiOiJ5b3VyLWF1ZGllbmNlIn0.PMN_Eh91PF5EssApx5uhwcTtfPsgaBy0LBVSPi7yej4",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/publication",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "edit tiket",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"unitId\":1,\"person\":2,\"usedDate\":\"2025/04/04\",\"usedMonth\":\"2025/04\",\"typePubId\":1,\"infoPub\":[{\"id\":0,\"supplyCode\":\"20016394\",\"useQuantity\":\"8\",\"imageKey\":[\"4624e249-d8dc-4f4b-9c06-74b3beabe065\"]}],\"contactPerson\":\"hh\",\"contactPhone\":\"55808\",\"locationId\":[-1,13],\"districtId\":[500000121],\"wardId\":[711],\"streetId\":[9716],\"numHouse\":\"yhhh\",\"lat\":10.801656850650772,\"lng\":106.632399559021,\"note\":\"fgg\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6IjdkYWVmZWQzLWIwZGQtNGYzMC1iNGQ4LWY3OTM0MzRhMWQ2NyIsImV4cCI6MTc0Mzc2ODk4MSwiaXNzIjoieW91ci1pc3N1ZXIiLCJhdWQiOiJ5b3VyLWF1ZGllbmNlIn0.PMN_Eh91PF5EssApx5uhwcTtfPsgaBy0LBVSPi7yej4",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/publication/edit",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication",
+                                "edit"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "comfirm tiket",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"unitId\":1,\"person\":2,\"usedDate\":\"2025/04/04\",\"usedMonth\":\"2025/04\",\"typePubId\":1,\"infoPub\":[{\"id\":0,\"supplyCode\":\"20016394\",\"useQuantity\":\"8\",\"imageKey\":[\"4624e249-d8dc-4f4b-9c06-74b3beabe065\"]}],\"contactPerson\":\"hh\",\"contactPhone\":\"55808\",\"locationId\":[-1,13],\"districtId\":[500000121],\"wardId\":[711],\"streetId\":[9716],\"numHouse\":\"yhhh\",\"lat\":10.801656850650772,\"lng\":106.632399559021,\"note\":\"fgg\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6IjdkYWVmZWQzLWIwZGQtNGYzMC1iNGQ4LWY3OTM0MzRhMWQ2NyIsImV4cCI6MTc0Mzc2ODk4MSwiaXNzIjoieW91ci1pc3N1ZXIiLCJhdWQiOiJ5b3VyLWF1ZGllbmNlIn0.PMN_Eh91PF5EssApx5uhwcTtfPsgaBy0LBVSPi7yej4",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/publication/confirmed",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication",
+                                "confirmed"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Tạo phiếu V2",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"unitId\":1,\"person\":2,\"usedDate\":\"2025/04/04\",\"usedMonth\":\"2025/04\",\"typePubId\":1,\"infoPub\":[{\"id\":0,\"supplyCode\":\"20016394\",\"useQuantity\":\"8\",\"imageKey\":[\"4624e249-d8dc-4f4b-9c06-74b3beabe065\"]}],\"contactPerson\":\"hh\",\"contactPhone\":\"55808\",\"locationId\":[-1,13],\"districtId\":[500000121],\"wardId\":[711],\"streetId\":[9716],\"numHouse\":\"yhhh\",\"lat\":10.801656850650772,\"lng\":106.632399559021,\"note\":\"fgg\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6IjdkYWVmZWQzLWIwZGQtNGYzMC1iNGQ4LWY3OTM0MzRhMWQ2NyIsImV4cCI6MTc0Mzc2ODk4MSwiaXNzIjoieW91ci1pc3N1ZXIiLCJhdWQiOiJ5b3VyLWF1ZGllbmNlIn0.PMN_Eh91PF5EssApx5uhwcTtfPsgaBy0LBVSPi7yej4",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/publication/v2",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication",
+                                "v2"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "comfirm tiket V2",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"unitId\":1,\"person\":2,\"usedDate\":\"2025/04/04\",\"usedMonth\":\"2025/04\",\"typePubId\":1,\"infoPub\":[{\"id\":0,\"supplyCode\":\"20016394\",\"useQuantity\":\"8\",\"imageKey\":[\"4624e249-d8dc-4f4b-9c06-74b3beabe065\"]}],\"contactPerson\":\"hh\",\"contactPhone\":\"55808\",\"locationId\":[-1,13],\"districtId\":[500000121],\"wardId\":[711],\"streetId\":[9716],\"numHouse\":\"yhhh\",\"lat\":10.801656850650772,\"lng\":106.632399559021,\"note\":\"fgg\"}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6IjdkYWVmZWQzLWIwZGQtNGYzMC1iNGQ4LWY3OTM0MzRhMWQ2NyIsImV4cCI6MTc0Mzc2ODk4MSwiaXNzIjoieW91ci1pc3N1ZXIiLCJhdWQiOiJ5b3VyLWF1ZGllbmNlIn0.PMN_Eh91PF5EssApx5uhwcTtfPsgaBy0LBVSPi7yej4",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/publication/confirmedv2",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication",
+                                "confirmedv2"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "streets",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/street",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "street"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "districtId",
+                                    "value": "34",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "wardId",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get thông tin ấn phẩm từ QR Code",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "pms/api/m/v1/pmsMarketing/qrCode/supplies",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "qrCode",
+                                "supplies"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "code",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "lấy số lượng khả dụng",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/v1/pmsMarketing/cbb/inventory",
+                            "path": [
+                                "pms",
+                                "api",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "inventory"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "BranchId",
+                                    "value": "131",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Quarter",
+                                    "value": "2025%2FQ3",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "SupplyId",
+                                    "value": "368",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "MonthDeploy",
+                                    "value": "2025%2F07",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Tìm kiếm Mã hàng",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/publication/supplyV3",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication",
+                                "supplyV3"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "start",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "end",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "0",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "BranchId",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "MonthDeploy",
+                                    "description": "format (yyyy/Qx)",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Quarter",
+                                    "description": "format (yyyy/MM)",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "getBranchFromUserId",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/authorizeBranch",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "authorizeBranch"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "start",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "end",
+                                    "value": "1000",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "userId",
+                                    "value": "{{userId}}",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "province",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/location",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "location"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "district",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/district",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "district"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "locationId",
+                                    "value": "34",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "danh sách phiếu sử dụng chi phí",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/marketingExpense",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "marketingExpense"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "start",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "end",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "branchId",
+                                    "value": "2",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Danh sách loại triển khai",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/m/v1/pmsMarketing/cbb/pubTicketType",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "cbb",
+                                "pubTicketType"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Storage",
+            "description": "",
+            "item": [
+                {
+                    "name": "get image",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiTmd1eWVuTlQ1MEBGUFQuQ09NIiwianRpIjoiYTM5ZjdmMGMtMjc1YS00NTE0LThjOGQtYjJlZWMwYzVjOWJkIiwiZXhwIjoxNzQ1ODgzMjkxLCJpc3MiOiJodHRwczovL3lvdXItaWRlbnRpdHktc2VydmVyIiwiYXVkIjoiTXlBcHBVc2VycyJ9.jZ02-Hd1y-ldog29NHA0v95QFwv9EuTO-E2HYOX-IbE",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/v1/pmsMarketing/storage/download",
+                            "path": [
+                                "pms",
+                                "api",
+                                "v1",
+                                "pmsMarketing",
+                                "storage",
+                                "download"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "fileKey",
+                                    "value": "r1KMHyd2sPPEEfLB4GQe",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "upload ảnh",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "value": "/D:/Images/Cat/2.jpg",
+                                    "type": "text",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiTmd1eWVuTlQ1MEBGUFQuQ09NIiwianRpIjoiYTM5ZjdmMGMtMjc1YS00NTE0LThjOGQtYjJlZWMwYzVjOWJkIiwiZXhwIjoxNzQ1ODgzMjkxLCJpc3MiOiJodHRwczovL3lvdXItaWRlbnRpdHktc2VydmVyIiwiYXVkIjoiTXlBcHBVc2VycyJ9.jZ02-Hd1y-ldog29NHA0v95QFwv9EuTO-E2HYOX-IbE",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/pms/api/v1/pmsMarketing/storage/upload",
+                            "path": [
+                                "pms",
+                                "api",
+                                "v1",
+                                "pmsMarketing",
+                                "storage",
+                                "upload"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "ManagerTicket",
+            "description": "",
+            "item": [
+                {
+                    "name": "Ds Phiếu",
+                    "description": "",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "text"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Access-Control_Allow_Origin",
+                                "value": "*",
+                                "description": "",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6IjdkYWVmZWQzLWIwZGQtNGYzMC1iNGQ4LWY3OTM0MzRhMWQ2NyIsImV4cCI6MTc0Mzc2ODk4MSwiaXNzIjoieW91ci1pc3N1ZXIiLCJhdWQiOiJ5b3VyLWF1ZGllbmNlIn0.PMN_Eh91PF5EssApx5uhwcTtfPsgaBy0LBVSPi7yej4",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "https://apis-stag.fpt.vn/pms/api/m/v1/pmsMarketing/publication",
+                            "path": [
+                                "pms",
+                                "api",
+                                "m",
+                                "v1",
+                                "pmsMarketing",
+                                "publication"
+                            ],
+                            "host": [
+                                "apis-stag",
+                                "fpt",
+                                "vn"
+                            ],
+                            "protocol": "https",
+                            "query": [
+                                {
+                                    "key": "unitId",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "typePubId",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "UsedDateTo",
+                                    "value": "2025/01",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "UsedDateFrom",
+                                    "value": "2025/04",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "start",
+                                    "value": "1",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "end",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Profile SOP",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEzMjYwMDI1LWEyOWQtNDk2My04ODdhLTA4ZTA0N2NiMTFmZCIsImVtYWlsIjoiaGllbnR0NDZAZnB0LmNvbSIsImZsYWciOiJ3ZWIiLCJpYXQiOjE3NDM2NjM4MjMsImV4cCI6MTc0NjI1NTgyM30.qgTbANkoa88tijYJNX-7Qv0_j_9aOsvfCD0doeP_Zjs",
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "url": {
+                    "raw": "https://gateway-sop-stg.fpt.vn/user-service/api/user/profile-infor",
+                    "path": [
+                        "user-service",
+                        "api",
+                        "user",
+                        "profile-infor"
+                    ],
+                    "host": [
+                        "gateway-sop-stg",
+                        "fpt",
+                        "vn"
+                    ],
+                    "protocol": "https",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        }
+    ],
+    "variable": [],
+    "event": [],
+    "auth": {}
+}

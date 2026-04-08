@@ -2,17 +2,23 @@ import { useState } from 'react';
 import { APP_LIST } from './constants/apps';
 import { AppCard } from './components/AppCard';
 import { AppDetail } from './components/AppDetail';
+import { ApiExplorer } from './components/ApiExplorer';
 import type { AppInfo } from './types/app';
+
+type Page = 'home' | 'api-explorer';
 
 function App() {
   const [selectedApp, setSelectedApp] = useState<AppInfo | null>(null);
+  const [page, setPage] = useState<Page>('home');
 
   return (
     <div className="ambient-glow relative flex min-h-screen flex-col">
       {/* Main content */}
       <main className="relative z-10 flex flex-1 flex-col items-center px-5 py-12 sm:px-6 sm:py-16">
-        <div className="w-full max-w-lg">
-          {!selectedApp ? (
+        <div className="w-full max-w-2xl">
+          {page === 'api-explorer' ? (
+            <ApiExplorer onBack={() => setPage('home')} />
+          ) : !selectedApp ? (
             <>
               {/* Hero header */}
               <header className="mb-12 text-center">
@@ -30,7 +36,7 @@ function App() {
               </header>
 
               {/* App list */}
-              <section>
+              <section className="mb-8">
                 <div className="mb-4 flex items-center justify-between px-1">
                   <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
                     Applications
@@ -44,6 +50,38 @@ function App() {
                     <AppCard key={app.id} app={app} onSelect={setSelectedApp} />
                   ))}
                 </div>
+              </section>
+
+              {/* Tools section */}
+              <section>
+                <div className="mb-4 px-1">
+                  <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+                    Developer Tools
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setPage('api-explorer')}
+                  className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan/20 to-primary-500/20">
+                      <svg className="h-5 w-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-white group-hover:text-accent-cyan">
+                        API Explorer
+                      </p>
+                      <p className="mt-0.5 text-xs text-slate-500">
+                        Browse & search PMS API endpoints from Postman collection
+                      </p>
+                    </div>
+                    <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </div>
+                </button>
               </section>
             </>
           ) : (

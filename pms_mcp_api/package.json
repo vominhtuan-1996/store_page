@@ -1,0 +1,14 @@
+{
+  "name": "pms-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP Server for PMS API (from Postman collection)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "node-fetch": "^3.3.2"
+  }
+}

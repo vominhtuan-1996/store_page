@@ -37,6 +37,14 @@
     "prisma": {
       "command": "npx",
       "args": ["-y", "prisma-mcp-server"]
+    },
+    "pms-api": {
+      "command": "node",
+      "args": ["/Users/tuanvm37/store_page/pms_mcp_api/server.js"],
+      "env": {
+        "PMS_BASE_URL": "https://apis-stag.fpt.vn",
+        "PMS_AUTH_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6ImRhNGI0ZTAzLWM0OGQtNGJmNy04ZDAyLTlkYmZjNjE4MDU2OSIsImV4cCI6MTc3NTY4MTc4MSwiaXNzIjoiaHR0cHM6Ly95b3VyLWlkZW50aXR5LXNlcnZlciIsImF1ZCI6Ik15QXBwVXNlcnMifQ.ua7CtwX6hl8FTjNWhufYRAbuAkugVMq52d0BeaV6HBQ"
+      }
     }
   }
 }
