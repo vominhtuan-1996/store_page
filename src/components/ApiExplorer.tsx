@@ -173,6 +173,8 @@ export const ApiExplorer = ({ onBack }: ApiExplorerProps) => {
               apis={apis}
               onSelectApi={setSelectedApi}
               resolveUrl={resolveUrl}
+              authToken={authToken}
+              onTokenChange={handleTokenChange}
             />
           ) : (
             <>
