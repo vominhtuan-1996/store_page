@@ -2,26 +2,42 @@
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-playwright"]
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-playwright"
+      ]
     },
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-filesystem", "/Users/tuanvm37/store_page"]
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-filesystem",
+        "/Users/tuanvm37/store_page"
+      ]
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-github"],
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-github"
+      ],
       "env": {
         "GITHUB_TOKEN": ""
       }
     },
     "supabase": {
       "command": "npx",
-      "args": ["-y", "supabase-mcp-server"],
+      "args": [
+        "-y",
+        "supabase-mcp-server"
+      ],
       "env": {
         "SUPABASE_URL": "",
         "SUPABASE_SERVICE_ROLE_KEY": ""
@@ -29,21 +45,38 @@
     },
     "firebase": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-firebase"],
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-firebase"
+      ],
       "env": {
         "FIREBASE_PROJECT_ID": ""
       }
     },
     "prisma": {
       "command": "npx",
-      "args": ["-y", "prisma-mcp-server"]
+      "args": [
+        "-y",
+        "prisma-mcp-server"
+      ]
     },
     "pms-api": {
       "command": "node",
-      "args": ["/Users/tuanvm37/store_page/pms_mcp_api/server.js"],
+      "args": [
+        "/Users/tuanvm37/store_page/pms_mcp_api/server.js"
+      ],
       "env": {
         "PMS_BASE_URL": "https://apis-stag.fpt.vn",
         "PMS_AUTH_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6ImRhNGI0ZTAzLWM0OGQtNGJmNy04ZDAyLTlkYmZjNjE4MDU2OSIsImV4cCI6MTc3NTY4MTc4MSwiaXNzIjoiaHR0cHM6Ly95b3VyLWlkZW50aXR5LXNlcnZlciIsImF1ZCI6Ik15QXBwVXNlcnMifQ.ua7CtwX6hl8FTjNWhufYRAbuAkugVMq52d0BeaV6HBQ"
+      }
+    },
+    "figma-api": {
+      "command": "node",
+      "args": [
+        "/Users/tuanios_su12/store_page/figma_mcp_api/server.js"
+      ],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": ""
       }
     }
   }
