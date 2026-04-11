@@ -38,6 +38,10 @@
       "command": "npx",
       "args": ["-y", "prisma-mcp-server"]
     },
+    "doc-reader": {
+      "command": "node",
+      "args": ["/Users/tuanvm37/store_page/mcp-doc-reader/server.js"]
+    },
     "pms-api": {
       "command": "node",
       "args": ["/Users/tuanvm37/store_page/pms_mcp_api/server.js"],

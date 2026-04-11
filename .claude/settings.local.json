@@ -1,0 +1,13 @@
+{
+  "enabledMcpjsonServers": [
+    "context7",
+    "playwright",
+    "filesystem",
+    "github",
+    "supabase",
+    "firebase",
+    "prisma",
+    "doc-reader",
+    "pms-api"
+  ]
+}

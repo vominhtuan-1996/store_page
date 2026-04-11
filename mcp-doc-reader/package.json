@@ -1,0 +1,14 @@
+{
+  "name": "mcp-doc-reader",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP Server for reading and searching .docx documents",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "mammoth": "^1.8.0"
+  }
+}
