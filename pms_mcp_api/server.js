@@ -7,10 +7,15 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { config } from 'dotenv';
 import { parseCollection } from './postmanParser.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load .env from project root
+config({ path: path.resolve(__dirname, '..', '.env') });
+
 const MCP_JSON_PATH = path.resolve(__dirname, '..', '.mcp.json');
 
 const BASE_URL = process.env.PMS_BASE_URL || 'https://apis-stag.fpt.vn';
@@ -103,10 +108,12 @@ async function callApi(apiDef, params = {}) {
 const apis = parseCollection();
 
 // Tool: list all available APIs
-server.tool(
+server.registerTool(
   'list_apis',
-  'List all available PMS APIs from the Postman collection',
-  {},
+  {
+    description: 'List all available PMS APIs from the Postman collection',
+    inputSchema: z.object({}),
+  },
   async () => {
     const list = apis.map((a, i) => `${i + 1}. [${a.method}] ${a.displayName}\n   Tool: ${a.toolName}`);
     return {
@@ -140,10 +147,12 @@ for (const api of apis) {
     }
   }
 
-  server.tool(
+  server.registerTool(
     api.toolName,
-    `${api.description}\n\nURL: ${api.url}`,
-    shape,
+    {
+      description: `${api.description}\n\nURL: ${api.url}`,
+      inputSchema: z.object(shape),
+    },
     async (params) => {
       try {
         const result = await callApi(api, params);

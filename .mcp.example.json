@@ -1,0 +1,97 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-playwright"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-filesystem",
+        "/absolute/path/to/store_page"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-github"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "your_github_token_here"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "supabase-mcp-server"
+      ],
+      "env": {
+        "SUPABASE_URL": "https://your-project.supabase.co",
+        "SUPABASE_SERVICE_ROLE_KEY": "your_service_role_key_here"
+      }
+    },
+    "firebase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-firebase"
+      ],
+      "env": {
+        "FIREBASE_PROJECT_ID": "your_firebase_project_id"
+      }
+    },
+    "prisma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "prisma-mcp-server"
+      ]
+    },
+    "doc-reader": {
+      "command": "node",
+      "args": ["./mcp-doc-reader/server.js"]
+    },
+    "pms-api": {
+      "command": "node",
+      "args": [
+        "./pms_mcp_api/server.js"
+      ],
+      "env": {
+        "PMS_BASE_URL": "https://apis-stag.fpt.vn",
+        "PMS_AUTH_TOKEN": "your_jwt_token_here"
+      }
+    },
+    "telegram": {
+      "command": "node",
+      "args": [
+        "./telegram_mcp/server.js"
+      ],
+      "env": {
+        "TELEGRAM_BOT_TOKEN": "123456:ABC-DEF_your_bot_token",
+        "TELEGRAM_CHAT_ID": "-1001234567890"
+      }
+    },
+    "figma-api": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/store_page/figma_mcp_api/server.js"
+      ],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "figd_your_figma_token"
+      }
+    }
+  }
+}

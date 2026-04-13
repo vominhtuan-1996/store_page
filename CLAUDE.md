@@ -1,5 +1,35 @@
 # Project Rules - React Web Application
 
+## Task Management (Quan trọng)
+
+Khi user giao bất kỳ task nào cần thực hiện:
+1. **Bắt đầu task** → Gọi `create_task` với title + priority phù hợp, rồi `update_task` status `in_progress`
+2. **Hoàn thành** → `update_task` status `done`, ghi kết quả vào `notes`
+3. **Gặp vấn đề / bị block** → `update_task` status `pending`, ghi lý do vào `notes`
+4. **Khi user hỏi tiến độ** → Gọi `list_tasks` hoặc `task_summary` trước khi trả lời
+
+Không cần hỏi user trước khi tạo/cập nhật task — làm tự động.
+
+### Lưu context (quan trọng)
+
+Sau mỗi lần làm việc trên một task — dù hoàn thành hay dừng giữa chừng — **bắt buộc** gọi `update_task` với:
+
+- `context`: tóm tắt những gì đã làm, file nào đã sửa/tạo, approach kỹ thuật, quyết định quan trọng. Viết đủ chi tiết để Claude session mới đọc vào hiểu ngay mà không cần hỏi lại.
+- `next_steps`: liệt kê cụ thể các bước còn lại cần làm (nếu task chưa xong)
+
+**Format context nên theo:**
+```
+Files đã sửa: src/components/Foo.tsx (thêm props X), src/hooks/useBar.ts (mới)
+Approach: dùng Zustand cho state, React Query cho data fetching
+Quyết định: không dùng useEffect vì..., chọn pattern X vì...
+Vấn đề gặp: lỗi Y khi Z, đã fix bằng cách...
+```
+
+**Khi user nói "tiếp tục task X" hoặc dùng `/task-resume`:**
+→ Gọi `resume_task` để load context, đọc kỹ rồi tiếp tục — không hỏi lại những gì đã có trong context.
+
+---
+
 ## Overview
 Dự án giao diện web sử dụng React. Mọi code và convention phải tuân theo các rule bên dưới.
 

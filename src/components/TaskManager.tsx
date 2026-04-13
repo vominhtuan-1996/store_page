@@ -1,0 +1,358 @@
+import { useState, useEffect, useCallback } from 'react';
+import { supabase } from '../services/supabase';
+import type { Task, TaskStatus, TaskPriority, CreateTaskDto } from '../types/task.types';
+
+interface TaskManagerProps {
+  onBack: () => void;
+}
+
+const STATUS_TABS: { key: TaskStatus | 'all'; label: string }[] = [
+  { key: 'all', label: 'Tất cả' },
+  { key: 'in_progress', label: 'Đang làm' },
+  { key: 'pending', label: 'Chờ' },
+  { key: 'done', label: 'Xong' },
+];
+
+const PRIORITY_COLOR: Record<TaskPriority, string> = {
+  high: 'text-red-400 bg-red-500/10',
+  normal: 'text-amber-400 bg-amber-500/10',
+  low: 'text-slate-400 bg-slate-500/10',
+};
+
+const PRIORITY_LABEL: Record<TaskPriority, string> = {
+  high: 'Gấp',
+  normal: 'Normal',
+  low: 'Low',
+};
+
+const STATUS_ICON: Record<TaskStatus, string> = {
+  pending: '⏳',
+  in_progress: '🔄',
+  done: '✅',
+  cancelled: '🚫',
+};
+
+const STATUS_COLOR: Record<TaskStatus, string> = {
+  pending: 'text-slate-400',
+  in_progress: 'text-blue-400',
+  done: 'text-emerald-400',
+  cancelled: 'text-slate-600',
+};
+
+function timeAgo(dateStr: string) {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return 'vừa xong';
+  if (m < 60) return `${m}p`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h`;
+  return `${Math.floor(h / 24)}d`;
+}
+
+export const TaskManager = ({ onBack }: TaskManagerProps) => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<TaskStatus | 'all'>('all');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [showCreate, setShowCreate] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [form, setForm] = useState<CreateTaskDto>({ title: '', priority: 'normal' });
+  const [updatingId, setUpdatingId] = useState<string | null>(null);
+
+  const fetchTasks = useCallback(async () => {
+    setLoading(true);
+    let query = supabase
+      .from('tasks')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (activeTab !== 'all') {
+      query = query.eq('status', activeTab);
+    } else {
+      query = query.neq('status', 'cancelled');
+    }
+
+    const { data, error } = await query;
+    if (!error && data) setTasks(data as Task[]);
+    setLoading(false);
+  }, [activeTab]);
+
+  useEffect(() => { fetchTasks(); }, [fetchTasks]);
+
+  const createTask = async () => {
+    if (!form.title.trim()) return;
+    setCreating(true);
+    await supabase.from('tasks').insert({
+      title: form.title.trim(),
+      description: form.description?.trim() || null,
+      priority: form.priority,
+      status: 'pending',
+    });
+    setForm({ title: '', priority: 'normal' });
+    setShowCreate(false);
+    setCreating(false);
+    fetchTasks();
+  };
+
+  const updateStatus = async (id: string, status: TaskStatus) => {
+    setUpdatingId(id);
+    await supabase.from('tasks').update({ status }).eq('id', id);
+    setUpdatingId(null);
+    fetchTasks();
+  };
+
+  const filteredCount = (tab: TaskStatus | 'all') =>
+    tab === 'all'
+      ? tasks.filter(t => t.status !== 'cancelled').length
+      : tasks.filter(t => t.status === tab).length;
+
+  return (
+    <div>
+      {/* Back */}
+      <button
+        onClick={onBack}
+        className="mb-8 flex items-center gap-2 text-sm text-slate-500 transition-colors hover:text-white"
+      >
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+        Back
+      </button>
+
+      {/* Header */}
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/30 to-purple-600/30">
+            <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h1 className="text-lg font-bold text-white">Task Manager</h1>
+            <p className="text-xs text-slate-500">Powered by Supabase</p>
+          </div>
+        </div>
+        <button
+          onClick={() => setShowCreate(true)}
+          className="flex items-center gap-1.5 rounded-xl bg-violet-500/20 px-3 py-2 text-xs font-semibold text-violet-400 transition-colors hover:bg-violet-500/30"
+        >
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          New Task
+        </button>
+      </div>
+
+      {/* Create form */}
+      {showCreate && (
+        <div className="glass mb-5 rounded-2xl p-4">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Tạo task mới</p>
+          <input
+            autoFocus
+            value={form.title}
+            onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
+            onKeyDown={e => e.key === 'Enter' && createTask()}
+            placeholder="Tiêu đề task..."
+            className="mb-2 w-full rounded-lg bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-600 outline-none focus:ring-1 focus:ring-violet-500/50"
+          />
+          <textarea
+            value={form.description || ''}
+            onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
+            placeholder="Mô tả (tuỳ chọn)..."
+            rows={2}
+            className="mb-3 w-full resize-none rounded-lg bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-600 outline-none focus:ring-1 focus:ring-violet-500/50"
+          />
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1">
+              {(['low', 'normal', 'high'] as TaskPriority[]).map(p => (
+                <button
+                  key={p}
+                  onClick={() => setForm(f => ({ ...f, priority: p }))}
+                  className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors ${
+                    form.priority === p ? PRIORITY_COLOR[p] + ' ring-1 ring-current' : 'text-slate-600 hover:text-slate-400'
+                  }`}
+                >
+                  {PRIORITY_LABEL[p]}
+                </button>
+              ))}
+            </div>
+            <div className="ml-auto flex gap-2">
+              <button
+                onClick={() => { setShowCreate(false); setForm({ title: '', priority: 'normal' }); }}
+                className="rounded-lg px-3 py-1.5 text-xs text-slate-500 hover:text-white"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={createTask}
+                disabled={creating || !form.title.trim()}
+                className="rounded-lg bg-violet-500 px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-40 hover:bg-violet-400"
+              >
+                {creating ? 'Đang tạo...' : 'Tạo'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Status tabs */}
+      <div className="mb-4 flex gap-1 rounded-xl bg-white/5 p-1">
+        {STATUS_TABS.map(tab => {
+          const count = filteredCount(tab.key);
+          return (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg py-1.5 text-xs font-medium transition-colors ${
+                activeTab === tab.key
+                  ? 'bg-white/10 text-white'
+                  : 'text-slate-500 hover:text-slate-300'
+              }`}
+            >
+              {tab.label}
+              {count > 0 && (
+                <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
+                  activeTab === tab.key ? 'bg-white/10' : 'bg-white/5'
+                }`}>
+                  {count}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Task list */}
+      {loading ? (
+        <div className="flex items-center justify-center py-16 text-sm text-slate-600">
+          <svg className="mr-2 h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+          Đang tải...
+        </div>
+      ) : tasks.length === 0 ? (
+        <div className="py-16 text-center text-sm text-slate-600">
+          Không có task nào
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {tasks.map(task => {
+            const isExpanded = expandedId === task.id;
+            const isUpdating = updatingId === task.id;
+            return (
+              <div key={task.id} className="glass overflow-hidden rounded-xl">
+                {/* Task row */}
+                <button
+                  onClick={() => setExpandedId(isExpanded ? null : task.id)}
+                  className="flex w-full items-start gap-3 px-4 py-3.5 text-left"
+                >
+                  <span className="mt-0.5 text-base leading-none">{STATUS_ICON[task.status]}</span>
+                  <div className="min-w-0 flex-1">
+                    <p className={`truncate text-sm font-medium ${
+                      task.status === 'done' ? 'text-slate-500 line-through' :
+                      task.status === 'cancelled' ? 'text-slate-600 line-through' : 'text-white'
+                    }`}>
+                      {task.title}
+                    </p>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className={`rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${PRIORITY_COLOR[task.priority]}`}>
+                        {PRIORITY_LABEL[task.priority]}
+                      </span>
+                      <span className={`text-[11px] ${STATUS_COLOR[task.status]}`}>
+                        {task.status === 'in_progress' ? 'Đang làm' :
+                         task.status === 'pending' ? 'Chờ' :
+                         task.status === 'done' ? 'Xong' : 'Đã hủy'}
+                      </span>
+                      <span className="text-[11px] text-slate-600">{timeAgo(task.updated_at)}</span>
+                    </div>
+                  </div>
+                  <svg
+                    className={`mt-1 h-4 w-4 shrink-0 text-slate-600 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+
+                {/* Expanded details */}
+                {isExpanded && (
+                  <div className="border-t border-white/5 px-4 pb-4 pt-3">
+                    {task.description && (
+                      <p className="mb-3 text-xs text-slate-400">{task.description}</p>
+                    )}
+
+                    {task.notes && (
+                      <div className="mb-3">
+                        <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600">Notes</p>
+                        <p className="text-xs text-slate-400">{task.notes}</p>
+                      </div>
+                    )}
+
+                    {task.context && (
+                      <div className="mb-3">
+                        <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600">Context</p>
+                        <pre className="overflow-x-auto whitespace-pre-wrap rounded-lg bg-white/5 px-3 py-2 font-mono text-[11px] text-slate-400">{task.context}</pre>
+                      </div>
+                    )}
+
+                    {task.next_steps && (
+                      <div className="mb-3">
+                        <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600">Next Steps</p>
+                        <pre className="overflow-x-auto whitespace-pre-wrap rounded-lg bg-white/5 px-3 py-2 font-mono text-[11px] text-slate-400">{task.next_steps}</pre>
+                      </div>
+                    )}
+
+                    <p className="mb-3 text-[10px] text-slate-700">
+                      ID: {task.id.slice(0, 8)}... · Tạo: {new Date(task.created_at).toLocaleDateString('vi-VN')}
+                    </p>
+
+                    {/* Status actions */}
+                    {task.status !== 'cancelled' && (
+                      <div className="flex flex-wrap gap-2">
+                        {task.status !== 'in_progress' && task.status !== 'done' && (
+                          <button
+                            onClick={() => updateStatus(task.id, 'in_progress')}
+                            disabled={isUpdating}
+                            className="rounded-lg bg-blue-500/15 px-3 py-1.5 text-xs font-medium text-blue-400 hover:bg-blue-500/25 disabled:opacity-40"
+                          >
+                            🔄 Bắt đầu
+                          </button>
+                        )}
+                        {task.status !== 'done' && (
+                          <button
+                            onClick={() => updateStatus(task.id, 'done')}
+                            disabled={isUpdating}
+                            className="rounded-lg bg-emerald-500/15 px-3 py-1.5 text-xs font-medium text-emerald-400 hover:bg-emerald-500/25 disabled:opacity-40"
+                          >
+                            ✅ Hoàn thành
+                          </button>
+                        )}
+                        {task.status !== 'pending' && task.status !== 'done' && (
+                          <button
+                            onClick={() => updateStatus(task.id, 'pending')}
+                            disabled={isUpdating}
+                            className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-400 hover:bg-white/10 disabled:opacity-40"
+                          >
+                            ⏳ Pending
+                          </button>
+                        )}
+                        <button
+                          onClick={() => updateStatus(task.id, 'cancelled')}
+                          disabled={isUpdating}
+                          className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-400 disabled:opacity-40"
+                        >
+                          Hủy
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};

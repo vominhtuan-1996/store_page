@@ -62,26 +62,35 @@
     },
     "doc-reader": {
       "command": "node",
-      "args": ["/Users/tuanvm37/store_page/mcp-doc-reader/server.js"]
+      "args": ["./mcp-doc-reader/server.js"]
     },
     "pms-api": {
       "command": "node",
       "args": [
-        "/Users/tuanvm37/store_page/pms_mcp_api/server.js"
+        "./pms_mcp_api/server.js"
       ],
       "env": {
         "PMS_BASE_URL": "https://apis-stag.fpt.vn",
         "PMS_AUTH_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyLWVtYWlsIjoiSHV5TlExMjVAZnB0LmNvbSIsImp0aSI6ImRhNGI0ZTAzLWM0OGQtNGJmNy04ZDAyLTlkYmZjNjE4MDU2OSIsImV4cCI6MTc3NTY4MTc4MSwiaXNzIjoiaHR0cHM6Ly95b3VyLWlkZW50aXR5LXNlcnZlciIsImF1ZCI6Ik15QXBwVXNlcnMifQ.ua7CtwX6hl8FTjNWhufYRAbuAkugVMq52d0BeaV6HBQ"
       }
     },
+    "task-manager": {
+      "command": "node",
+      "args": [
+        "./task_mcp/server.js"
+      ]
+    },
+    "telegram": {
+      "command": "node",
+      "args": [
+        "./telegram_mcp/server.js"
+      ]
+    },
     "figma-api": {
       "command": "node",
       "args": [
-        "/Users/tuanios_su12/store_page/figma_mcp_api/server.js"
-      ],
-      "env": {
-        "FIGMA_ACCESS_TOKEN": ""
-      }
+        "/Users/tuanvm37/store_page/figma_mcp_api/server.js"
+      ]
     }
   }
 }

@@ -5,9 +5,15 @@ import { AppDetail } from './components/AppDetail';
 import { ApiExplorer } from './components/ApiExplorer';
 import { ClipboardSync } from './components/ClipboardSync';
 import { DocReader } from './components/DocReader';
+import { TelegramSender } from './components/TelegramSender';
+import { McpDocReaderInstall } from './components/McpDocReaderInstall';
+import { TaskManager } from './components/TaskManager';
+import { TaskMcpInstall } from './components/TaskMcpInstall';
+import { TelegramMcpInstall } from './components/TelegramMcpInstall';
+import { FigmaMcpInstall } from './components/FigmaMcpInstall';
 import type { AppInfo } from './types/app';
 
-type Page = 'home' | 'api-explorer' | 'clipboard-sync' | 'doc-reader';
+type Page = 'home' | 'api-explorer' | 'clipboard-sync' | 'doc-reader' | 'telegram' | 'mcp-install' | 'tasks' | 'task-mcp-install' | 'telegram-mcp-install' | 'figma-mcp-install';
 
 function App() {
   const [selectedApp, setSelectedApp] = useState<AppInfo | null>(null);
@@ -24,6 +30,18 @@ function App() {
             <ClipboardSync onBack={() => setPage('home')} />
           ) : page === 'api-explorer' ? (
             <ApiExplorer onBack={() => setPage('home')} />
+          ) : page === 'telegram' ? (
+            <TelegramSender onBack={() => setPage('home')} />
+          ) : page === 'mcp-install' ? (
+            <McpDocReaderInstall onBack={() => setPage('home')} />
+          ) : page === 'task-mcp-install' ? (
+            <TaskMcpInstall onBack={() => setPage('home')} />
+          ) : page === 'telegram-mcp-install' ? (
+            <TelegramMcpInstall onBack={() => setPage('home')} />
+          ) : page === 'figma-mcp-install' ? (
+            <FigmaMcpInstall onBack={() => setPage('home')} />
+          ) : page === 'tasks' ? (
+            <TaskManager onBack={() => setPage('home')} />
           ) : !selectedApp ? (
             <>
               {/* Hero header */}
@@ -77,12 +95,8 @@ function App() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-semibold text-white group-hover:text-accent-cyan">
-                          API Explorer
-                        </p>
-                        <p className="mt-0.5 text-xs text-slate-500">
-                          Browse & search PMS API endpoints from Postman collection
-                        </p>
+                        <p className="text-sm font-semibold text-white group-hover:text-accent-cyan">API Explorer</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Browse & search PMS API endpoints from Postman collection</p>
                       </div>
                       <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -101,14 +115,30 @@ function App() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-semibold text-white group-hover:text-amber-400">
-                          Doc Reader
-                        </p>
-                        <p className="mt-0.5 text-xs text-slate-500">
-                          Doc & tim kiem noi dung trong file .docx
-                        </p>
+                        <p className="text-sm font-semibold text-white group-hover:text-amber-400">Doc Reader</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Doc & tim kiem noi dung trong file .docx</p>
                       </div>
                       <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('telegram')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-blue-600/20">
+                        <svg className="h-5 w-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.483c-.148.658-.538.818-1.09.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.53l-2.95-.924c-.64-.203-.653-.64.136-.948l11.52-4.44c.533-.194 1 .13.666.93z"/>
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-sky-400">Telegram Sender</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Gửi tin nhắn & ảnh đến Telegram</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                       </svg>
                     </div>
@@ -125,14 +155,110 @@ function App() {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-semibold text-white group-hover:text-emerald-400">
-                          Clipboard Sync
-                        </p>
-                        <p className="mt-0.5 text-xs text-slate-500">
-                          Chia se clipboard giua cac thiet bi qua mang
-                        </p>
+                        <p className="text-sm font-semibold text-white group-hover:text-emerald-400">Clipboard Sync</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Chia se clipboard giua cac thiet bi qua mang</p>
                       </div>
                       <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('tasks')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-600/20">
+                        <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-violet-400">Task Manager</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Quản lý tasks của Claude, lưu trên Supabase</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('mcp-install')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-600/20">
+                        <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-amber-400">mcp-doc-reader</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Download & hướng dẫn cài đặt MCP Server đọc file .docx</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('task-mcp-install')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-600/20">
+                        <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-violet-400">task-mcp</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Download & hướng dẫn cài đặt MCP Server quản lý tasks</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('telegram-mcp-install')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/20 to-blue-600/20">
+                        <svg className="h-5 w-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-sky-400">telegram-mcp</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Download & hướng dẫn cài đặt MCP Server gửi Telegram</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('figma-mcp-install')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/20 to-rose-600/20">
+                        <svg className="h-5 w-5 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-pink-400">figma-mcp-api</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Download & hướng dẫn cài đặt MCP Server Figma REST API</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                       </svg>
                     </div>
@@ -150,6 +276,7 @@ function App() {
       <footer className="relative z-10 py-6 text-center text-[11px] tracking-wide text-slate-700">
         Internal use only &middot; Unauthorized distribution is prohibited
       </footer>
+
     </div>
   );
 }
