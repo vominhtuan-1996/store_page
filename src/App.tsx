@@ -11,13 +11,45 @@ import { TaskManager } from './components/TaskManager';
 import { TaskMcpInstall } from './components/TaskMcpInstall';
 import { TelegramMcpInstall } from './components/TelegramMcpInstall';
 import { FigmaMcpInstall } from './components/FigmaMcpInstall';
+import { AIAgent } from './components/AIAgent';
+import { StorageManager } from './components/StorageManager';
+import { WorkflowBuilder } from './features/workflow/WorkflowBuilder';
+import { WorkflowList } from './features/workflow/WorkflowList';
+import type { WorkflowRecord } from './features/workflow/workflowService';
 import type { AppInfo } from './types/app';
 
-type Page = 'home' | 'api-explorer' | 'clipboard-sync' | 'doc-reader' | 'telegram' | 'mcp-install' | 'tasks' | 'task-mcp-install' | 'telegram-mcp-install' | 'figma-mcp-install';
+type Page = 'home' | 'api-explorer' | 'clipboard-sync' | 'doc-reader' | 'telegram' | 'mcp-install' | 'tasks' | 'task-mcp-install' | 'telegram-mcp-install' | 'figma-mcp-install' | 'storage-manager' | 'ai-agent' | 'workflow';
 
 function App() {
   const [selectedApp, setSelectedApp] = useState<AppInfo | null>(null);
   const [page, setPage] = useState<Page>('home');
+  const [activeWorkflow, setActiveWorkflow] = useState<WorkflowRecord | null>(null);
+
+  if (page === 'workflow' && activeWorkflow) {
+    return (
+      <WorkflowBuilder
+        workflowId={activeWorkflow.id}
+        workflowName={activeWorkflow.name}
+        onBack={() => setActiveWorkflow(null)}
+      />
+    );
+  }
+
+  if (page === 'workflow') {
+    return (
+      <div className="ambient-glow relative flex min-h-screen flex-col">
+        <main className="relative z-10 flex flex-1 flex-col items-center px-5 py-12 sm:px-6 sm:py-16">
+          <div className="w-full max-w-2xl">
+            <WorkflowList
+              onBack={() => setPage('home')}
+              onOpen={wf => setActiveWorkflow(wf)}
+              onNew={wf => setActiveWorkflow(wf)}
+            />
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="ambient-glow relative flex min-h-screen flex-col">
@@ -42,6 +74,10 @@ function App() {
             <FigmaMcpInstall onBack={() => setPage('home')} />
           ) : page === 'tasks' ? (
             <TaskManager onBack={() => setPage('home')} />
+          ) : page === 'storage-manager' ? (
+            <StorageManager onBack={() => setPage('home')} />
+          ) : page === 'ai-agent' ? (
+            <AIAgent onBack={() => setPage('home')} />
           ) : !selectedApp ? (
             <>
               {/* Hero header */}
@@ -73,6 +109,60 @@ function App() {
                   {APP_LIST.map((app) => (
                     <AppCard key={app.id} app={app} onSelect={setSelectedApp} />
                   ))}
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <div className="mb-4 px-1">
+                  <h2 className="text-xs font-semibold uppercase tracking-widest text-primary-400">
+                    AI Power
+                  </h2>
+                </div>
+                <div className="space-y-3">
+                <button
+                  onClick={() => setPage('workflow')}
+                  className="glass group w-full rounded-2xl px-6 py-5 text-left transition-all hover:scale-[1.02] border-2 border-emerald-500/20 hover:border-emerald-500/50 relative overflow-hidden shadow-2xl shadow-emerald-500/10 mb-3"
+                >
+                  <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-emerald-500/10 to-transparent" />
+                  <div className="flex items-center gap-5 relative z-10">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-accent-cyan shadow-lg shadow-emerald-500/30">
+                      <svg className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Workflow Builder</p>
+                      <p className="mt-1 text-sm text-slate-400">Kéo thả API nodes, tạo automation flow như n8n</p>
+                    </div>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 group-hover:bg-emerald-500/20">
+                      <svg className="h-5 w-5 text-slate-600 group-hover:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
+                <button
+                  onClick={() => setPage('ai-agent')}
+                  className="glass group w-full rounded-2xl px-6 py-5 text-left transition-all hover:scale-[1.02] border-2 border-primary-500/20 hover:border-primary-500/50 relative overflow-hidden shadow-2xl shadow-primary-500/10"
+                >
+                  <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-primary-500/10 to-transparent" />
+                  <div className="flex items-center gap-5 relative z-10">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-accent-violet shadow-lg shadow-primary-500/30">
+                      <svg className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-lg font-bold text-white group-hover:text-primary-400 transition-colors">AI Agent Center</p>
+                      <p className="mt-1 text-sm text-slate-400">Giao tiếp và điều khiển toàn bộ hệ thống bằng ngôn ngữ tự nhiên</p>
+                    </div>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 group-hover:bg-primary-500/20">
+                      <svg className="h-5 w-5 text-slate-600 group-hover:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
                 </div>
               </section>
 
@@ -179,6 +269,26 @@ function App() {
                         <p className="mt-0.5 text-xs text-slate-500">Quản lý tasks của Claude, lưu trên Supabase</p>
                       </div>
                       <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setPage('storage-manager')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan/20 to-primary-500/20">
+                        <svg className="h-5 w-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-accent-cyan">Storage Manager</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Upload & Download files từ Supabase Storage</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                       </svg>
                     </div>

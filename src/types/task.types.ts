@@ -10,6 +10,8 @@ export interface Task {
   notes?: string;
   context?: string;
   next_steps?: string;
+  user?: string;
+  tool?: string;
   created_at: string;
   updated_at: string;
 }
@@ -18,4 +20,6 @@ export interface CreateTaskDto {
   title: string;
   description?: string;
   priority: TaskPriority;
+  user?: string;
+  tool?: string;
 }

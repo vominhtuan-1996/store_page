@@ -8,6 +8,9 @@
     "firebase",
     "prisma",
     "doc-reader",
-    "pms-api"
+    "pms-api",
+    "task-manager",
+    "telegram",
+    "figma-api"
   ]
 }
