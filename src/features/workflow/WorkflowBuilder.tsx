@@ -150,7 +150,7 @@ function FlowCanvas({ onBack, workflowId, workflowName }: WorkflowBuilderProps) 
   }, [setNodes]);
 
   const handleNodeChange = useCallback((nodeId: string, data: Partial<ApiData>) => {
-    setNodes(ns => ns.map(n => n.id === nodeId ? { ...n, data: { ...n.data, ...data } } : n));
+    setNodes(ns => ns.map(n => n.id === nodeId ? { ...n, data: { ...n.data, ...data } } : n) as FlowNode[]);
     setSelectedNode(prev => prev && prev.id === nodeId ? { ...prev, data: { ...prev.data, ...data } } as FlowNode : prev);
   }, [setNodes]);
 
@@ -169,7 +169,7 @@ function FlowCanvas({ onBack, workflowId, workflowName }: WorkflowBuilderProps) 
       : n.type === 'log'
       ? { ...n, data: { ...n.data, status: 'idle', output: undefined } }
       : n
-    ));
+    ) as FlowNode[]);
 
     const sorted = topoSort(nodes as FlowNode[], edges);
     const addLog = (nodeId: string, label: string, status: string, msg: string) =>
@@ -188,7 +188,7 @@ function FlowCanvas({ onBack, workflowId, workflowName }: WorkflowBuilderProps) 
         const api = apis.find(a => a.toolName === d.toolName);
         if (!api) { addLog(node.id, d.label, 'error', `Không tìm thấy endpoint: ${d.toolName}`); continue; }
 
-        setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'running' } } : n));
+        setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'running' } } : n) as FlowNode[]);
         addLog(node.id, d.label, 'running', `Gọi ${api.method} ${api.toolName}`);
 
         const t0 = Date.now();
@@ -224,10 +224,10 @@ function FlowCanvas({ onBack, workflowId, workflowName }: WorkflowBuilderProps) 
             addLog(node.id, d.label, 'success', `✓ ${res.status} · ${ms}ms`);
           }
 
-          setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'success', output: data } } : n));
+          setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'success', output: data } } : n) as FlowNode[]);
         } catch (err) {
           const msg = err instanceof Error ? err.message : String(err);
-          setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'error', errorMsg: msg } } : n));
+          setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'error', errorMsg: msg } } : n) as FlowNode[]);
           addLog(node.id, d.label, 'error', `✗ ${msg}`);
         }
         continue;
@@ -238,7 +238,7 @@ function FlowCanvas({ onBack, workflowId, workflowName }: WorkflowBuilderProps) 
         const incomingEdge = edges.find(e => e.target === node.id);
         const sourceOutput = incomingEdge ? context[incomingEdge.source] : undefined;
         context[node.id] = sourceOutput;
-        setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'success', output: sourceOutput } } : n));
+        setNodes(ns => ns.map(n => n.id === node.id ? { ...n, data: { ...n.data, status: 'success', output: sourceOutput } } : n) as FlowNode[]);
         addLog(node.id, (node.data as unknown as LogData).label, 'success', `Output: ${JSON.stringify(sourceOutput).slice(0, 80)}`);
       }
     }
