@@ -1,9 +1,11 @@
 import { Handle, Position } from '@xyflow/react';
-import type { NodeProps } from '@xyflow/react';
+import type { NodeProps, Node } from '@xyflow/react';
 import type { LogData } from '../types';
 
-export const LogNode = ({ data, selected }: NodeProps<{ data: LogData }>) => {
-  const d = data as unknown as LogData;
+type LogNode = Node<LogData, 'log'>;
+
+export const LogNode = ({ data, selected }: NodeProps<LogNode>) => {
+  const d = data;
   const status = d.status ?? 'idle';
 
   return (

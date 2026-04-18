@@ -1,5 +1,5 @@
 import { Handle, Position } from '@xyflow/react';
-import type { NodeProps } from '@xyflow/react';
+import type { NodeProps, Node } from '@xyflow/react';
 import type { ApiData } from '../types';
 
 const STATUS_COLORS = {
@@ -9,8 +9,10 @@ const STATUS_COLORS = {
   error: 'border-red-500/70 bg-[#0d1320]',
 };
 
-export const ApiNode = ({ data, selected }: NodeProps<{ data: ApiData }>) => {
-  const d = data as unknown as ApiData;
+type ApiNode = Node<ApiData, 'api'>;
+
+export const ApiNode = ({ data, selected }: NodeProps<ApiNode>) => {
+  const d = data;
   const status = d.status ?? 'idle';
 
   return (
