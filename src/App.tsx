@@ -13,12 +13,13 @@ import { TelegramMcpInstall } from './components/TelegramMcpInstall';
 import { FigmaMcpInstall } from './components/FigmaMcpInstall';
 import { AIAgent } from './components/AIAgent';
 import { StorageManager } from './components/StorageManager';
+import { CommandMarketplace } from './components/CommandMarketplace';
 import { WorkflowBuilder } from './features/workflow/WorkflowBuilder';
 import { WorkflowList } from './features/workflow/WorkflowList';
 import type { WorkflowRecord } from './features/workflow/workflowService';
 import type { AppInfo } from './types/app';
 
-type Page = 'home' | 'api-explorer' | 'clipboard-sync' | 'doc-reader' | 'telegram' | 'mcp-install' | 'tasks' | 'task-mcp-install' | 'telegram-mcp-install' | 'figma-mcp-install' | 'storage-manager' | 'ai-agent' | 'workflow';
+type Page = 'home' | 'api-explorer' | 'clipboard-sync' | 'doc-reader' | 'telegram' | 'mcp-install' | 'tasks' | 'task-mcp-install' | 'telegram-mcp-install' | 'figma-mcp-install' | 'storage-manager' | 'ai-agent' | 'workflow' | 'command-marketplace';
 
 function App() {
   const [selectedApp, setSelectedApp] = useState<AppInfo | null>(null);
@@ -78,6 +79,8 @@ function App() {
             <StorageManager onBack={() => setPage('home')} />
           ) : page === 'ai-agent' ? (
             <AIAgent onBack={() => setPage('home')} />
+          ) : page === 'command-marketplace' ? (
+            <CommandMarketplace onBack={() => setPage('home')} />
           ) : !selectedApp ? (
             <>
               {/* Hero header */}
@@ -174,6 +177,25 @@ function App() {
                   </h2>
                 </div>
                 <div className="space-y-3">
+                  <button
+                    onClick={() => setPage('command-marketplace')}
+                    className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-violet/20">
+                        <svg className="h-5 w-5 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white group-hover:text-primary-400">Command Marketplace</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Tất cả Claude Code slash commands — install từng cái hoặc cả bộ</p>
+                      </div>
+                      <svg className="h-4 w-4 text-slate-600 transition-colors group-hover:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </button>
                   <button
                     onClick={() => setPage('api-explorer')}
                     className="glass group w-full rounded-xl px-5 py-4 text-left transition-all hover:scale-[1.01]"
