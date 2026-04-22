@@ -1,77 +1,63 @@
-import { useTodos } from './hooks/useTodos';
-import { TodoInput } from './components/TodoInput';
-import { TodoItem } from './components/TodoItem';
-import { TodoFilter } from './components/TodoFilter';
+import { AnimatePresence, motion } from 'framer-motion';
+import PremiumDarkHero from './components/PremiumDarkHero';
+import FeaturesSection from './components/FeaturesSection';
+import StatsSection from './components/StatsSection';
+import WorksSection from './components/WorksSection';
+import ExplorationsSection from './components/ExplorationsSection';
+import JournalSection from './components/JournalSection';
+import FooterSection from './components/FooterSection';
+import ToolHub from './components/ToolHub';
+import { useCurrentRoute, useNavigate, type ToolId } from './router';
+import './styles/fonts.css';
+import './styles/theme.css';
+import './index.css';
 
-function App() {
-  const {
-    todos,
-    filter,
-    setFilter,
-    addTodo,
-    toggleTodo,
-    deleteTodo,
-    editTodo,
-    clearCompleted,
-    activeCount,
-    completedCount,
-    totalCount,
-  } = useTodos();
+const Sep = () => <div className="section-sep" />;
+
+const LandingPage = () => {
+  const navigate = useNavigate();
+  const openTool = (id: ToolId) => navigate({ page: 'tool', tool: id });
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-10 dark:bg-gray-900">
-      <div className="mx-auto w-full max-w-lg">
-        <h1 className="mb-8 text-center text-4xl font-bold text-gray-800 dark:text-white">
-          Todo List
-        </h1>
-
-        <div className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800">
-          <TodoInput onAdd={addTodo} />
-
-          {totalCount > 0 && (
-            <>
-              <ul className="mt-6 space-y-2">
-                {todos.map((todo) => (
-                  <TodoItem
-                    key={todo.id}
-                    todo={todo}
-                    onToggle={toggleTodo}
-                    onDelete={deleteTodo}
-                    onEdit={editTodo}
-                  />
-                ))}
-              </ul>
-
-              {todos.length === 0 && (
-                <p className="mt-6 text-center text-gray-400">
-                  No {filter} todos
-                </p>
-              )}
-
-              <div className="mt-6 border-t border-gray-200 pt-4 dark:border-gray-700">
-                <TodoFilter
-                  filter={filter}
-                  onFilterChange={setFilter}
-                  activeCount={activeCount}
-                  completedCount={completedCount}
-                  onClearCompleted={clearCompleted}
-                />
-              </div>
-            </>
-          )}
-
-          {totalCount === 0 && (
-            <p className="mt-6 text-center text-gray-400 dark:text-gray-500">
-              No todos yet. Add one above!
-            </p>
-          )}
-        </div>
-
-        <p className="mt-4 text-center text-xs text-gray-400">
-          Double-click a todo to edit it
-        </p>
-      </div>
+    <div className="min-h-screen" style={{ background: '#000' }}>
+      <main>
+        <PremiumDarkHero />
+        <FeaturesSection onOpenTool={openTool} />
+        <Sep />
+        <div style={{ background: '#000' }}><StatsSection /></div>
+        <Sep />
+        <div style={{ background: 'hsl(var(--bg-alt))' }}><WorksSection /></div>
+        <Sep />
+        <ExplorationsSection />
+        <Sep />
+        <div style={{ background: '#000' }}><JournalSection /></div>
+        <FooterSection />
+      </main>
     </div>
+  );
+};
+
+function App() {
+  const route = useCurrentRoute();
+
+  return (
+    <AnimatePresence mode="wait">
+      {route.page === 'landing' && (
+        <motion.div key="landing"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}>
+          <LandingPage />
+        </motion.div>
+      )}
+
+      {(route.page === 'hub' || route.page === 'tool' || route.page === 'workflow-builder') && (
+        <motion.div key="hub"
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.3 }}>
+          <ToolHub />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
