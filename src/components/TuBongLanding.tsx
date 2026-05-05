@@ -8,7 +8,7 @@ export const TuBongHero = () => {
     <section
       className="tubong-hero"
       style={{
-        backgroundImage: 'url(/images/hero-landscape.jpg)',
+        backgroundImage: 'url(/store_page/images/hero-landscape.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
