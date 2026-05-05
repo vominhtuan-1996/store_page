@@ -5,7 +5,14 @@ import '../styles/tubong.css';
 export const TuBongHero = () => {
   const navigate = useNavigate();
   return (
-    <section className="tubong-hero">
+    <section
+      className="tubong-hero"
+      style={{
+        backgroundImage: 'url(/images/hero-landscape.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="tubong-hero-overlay"></div>
       <div className="tubong-hero-content">
         <h1 className="tubong-hero-title">Tu Bông</h1>
