@@ -1,41 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import PremiumDarkHero from './components/PremiumDarkHero';
-import FeaturesSection from './components/FeaturesSection';
-import StatsSection from './components/StatsSection';
-import WorksSection from './components/WorksSection';
-import ExplorationsSection from './components/ExplorationsSection';
-import JournalSection from './components/JournalSection';
-import FooterSection from './components/FooterSection';
+import { TuBongLandingPage } from './components/TuBongLanding';
 import ToolHub from './components/ToolHub';
-import { useCurrentRoute, useNavigate, type ToolId } from './router';
+import { useCurrentRoute } from './router';
 import './styles/fonts.css';
 import './styles/theme.css';
 import './index.css';
-
-const Sep = () => <div className="section-sep" />;
-
-const LandingPage = () => {
-  const navigate = useNavigate();
-  const openTool = (id: ToolId) => navigate({ page: 'tool', tool: id });
-
-  return (
-    <div className="min-h-screen" style={{ background: '#000' }}>
-      <main>
-        <PremiumDarkHero />
-        <FeaturesSection onOpenTool={openTool} />
-        <Sep />
-        <div style={{ background: '#000' }}><StatsSection /></div>
-        <Sep />
-        <div style={{ background: 'hsl(var(--bg-alt))' }}><WorksSection /></div>
-        <Sep />
-        <ExplorationsSection />
-        <Sep />
-        <div style={{ background: '#000' }}><JournalSection /></div>
-        <FooterSection />
-      </main>
-    </div>
-  );
-};
 
 function App() {
   const route = useCurrentRoute();
@@ -46,7 +15,7 @@ function App() {
         <motion.div key="landing"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}>
-          <LandingPage />
+          <TuBongLandingPage />
         </motion.div>
       )}
 
