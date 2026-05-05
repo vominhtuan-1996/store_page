@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { workflowService, type WorkflowRecord } from './workflowService';
-import { HubButton, ToolHeader } from '../../components/ui/HubButton';
+import { ToolHeader } from '../../components/ui/HubButton';
 
 interface WorkflowListProps {
   onBack: () => void;
